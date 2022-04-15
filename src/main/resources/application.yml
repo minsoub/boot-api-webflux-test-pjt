@@ -1,0 +1,43 @@
+application:
+  title: Webflux & Mongodb Test application
+  version: 1.0
+
+server:
+  port: 8080
+
+#mongo:
+#  uri: mongodb://localhost:27017
+spring:
+  webflux:
+    base-path: /api
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: local
+
+  mongodb:
+    embedded:
+      version: 3.6.0   #  mongodb:
+#    embedded:
+#      version: 3.6.22
+
+logging:
+  level:
+    io:
+      netty: DEBUG
+    com:
+      bithumbsystems:
+        bootstarterproject: DEBUG
+    org:
+      springframework:
+        data: TRACE
+    reactor:
+      core: TRACE
+      util: TRACE
+
+endpoints:
+  health:
+    enabled: true
+  metrics:
+    enabled: true
