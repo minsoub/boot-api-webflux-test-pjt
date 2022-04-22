@@ -1,25 +1,16 @@
 package com.bithumbsystems.bootstarterproject.init;
 
-import com.bithumbsystems.bootstarterproject.config.MongoConfig;
-import com.bithumbsystems.bootstarterproject.domain.sample.model.Book;
-import com.bithumbsystems.bootstarterproject.domain.sample.model.Image;
-import com.bithumbsystems.bootstarterproject.domain.sample.model.Memo;
-import com.bithumbsystems.bootstarterproject.domain.sample.repository.BookRepository;
-import com.bithumbsystems.bootstarterproject.domain.sample.repository.ImageRepository;
-import com.bithumbsystems.bootstarterproject.domain.sample.repository.MemoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bithumbsystems.bootstarterproject.domain.coin.repository.entity.Coin;
+import com.bithumbsystems.bootstarterproject.domain.coin.repository.CoinRepository;
+import com.bithumbsystems.bootstarterproject.domain.sample.model.*;
+import com.bithumbsystems.bootstarterproject.domain.sample.repository.*;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileSystemUtils;
 import reactor.core.publisher.Flux;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class MongoInitDatabase {
@@ -54,6 +45,37 @@ public class MongoInitDatabase {
             ).flatMap(operation::save)
                     .subscribe(System.out::println);
         };
+    }
+    @Bean
+    CommandLineRunner coin(CoinRepository operation) {
+        List<Coin> list = new ArrayList<>();
+        for (int i=0; i<500; i++) {
+            list.add(new Coin("BTC"+String.valueOf(i), "BTC1", "비트코인", "http://dev.bithumb.com/resources/img/coin/coin-343434343434343434433433.png", "Y", "Y", "N", "XXX"));
+        }
+        return args -> {
+            Flux.fromIterable(list).flatMap(operation::save).subscribe(System.out::println);
+//            Flux.just(list).flatMap(operation::save)
+//                    .subscribe(System.out::println);
+        };
+    }
+
+    @Bean
+    CommandLineRunner redisCoin(BitCoinRepository operation) {
+        List<BitCoin> list = new ArrayList<>();
+        for (int i=0; i<500; i++) {
+            list.add(new BitCoin("BTC"+String.valueOf(i), "BTC1", "비트코인", "http://dev.bithumb.com/resources/img/coin/coin-343434343434343434433433.png", "Y", "Y", "N", "XXX"));
+        }
+        for (BitCoin coin: list) {
+            operation.save(coin);
+        }
+        return args -> {
+
+        };
+//        return args -> {
+//            Flux.fromIterable(list).flatMap(operation::save).subscribe(System.out::println);
+////            Flux.just(list).flatMap(operation::save)
+////                    .subscribe(System.out::println);
+//        };
     }
 
     @Bean
