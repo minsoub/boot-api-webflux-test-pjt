@@ -2,6 +2,9 @@ package com.bithumbsystems.bootstarterproject.init;
 
 import com.bithumbsystems.bootstarterproject.domain.coin.repository.entity.Coin;
 import com.bithumbsystems.bootstarterproject.domain.coin.repository.CoinRepository;
+import com.bithumbsystems.bootstarterproject.domain.menu.repository.MenuRepository;
+import com.bithumbsystems.bootstarterproject.domain.menu.repository.entity.Menu;
+import com.bithumbsystems.bootstarterproject.domain.menu.repository.entity.MenuItem;
 import com.bithumbsystems.bootstarterproject.domain.sample.model.*;
 import com.bithumbsystems.bootstarterproject.domain.sample.repository.*;
 import org.springframework.boot.CommandLineRunner;
@@ -101,5 +104,64 @@ public class MongoInitDatabase {
         };
     }
 
+    @Bean
+    CommandLineRunner menu(MenuRepository operations) {
 
+        List<Menu> list = new ArrayList<>();
+        Menu menu = new Menu();
+        menu.setId("group-dashboard");
+        menu.setTitle("Navigation");
+        menu.setType("group");
+
+        List<MenuItem> items = new ArrayList<>();
+        MenuItem item = new MenuItem();
+        item.setId("dashboard");
+        item.setTitle("Dashboard");
+        item.setType("item");
+        item.setUrl("/dashboard/default");
+        item.setAuth(true);
+        item.setIcon("DashboardOutlined");
+        item.setBreadcrumbs(false);
+        item.setChildren(null);
+        items.add(item);
+
+        menu.setChildren(items);
+        list.add(menu);
+
+        Menu menu1 = new Menu();
+        menu1.setId("authentication");
+        menu1.setTitle("Authentication");
+        menu1.setType("group");
+
+        List<MenuItem> items2 = new ArrayList<>();
+        MenuItem item1 = new MenuItem();
+        item1.setId("login1");
+        item1.setTitle("Login");
+        item1.setType("item");
+        item1.setUrl("/login");
+        item1.setTarget(true);
+        item1.setIcon("LoginOutlined");
+        item1.setChildren(null);
+        items2.add(item1);
+
+        MenuItem item2 = new MenuItem();
+        item2.setId("register1");
+        item2.setTitle("'Register'");
+        item2.setType("item");
+        item2.setUrl("/register");
+        item2.setTarget(true);
+        item2.setIcon("ProfileOutlined");
+        item2.setChildren(null);
+        items2.add(item2);
+
+
+        menu1.setChildren(items2);
+        list.add(menu1);
+
+        return args -> {
+            Flux.fromIterable(list).flatMap(operations::save).subscribe(System.out::println);
+//            Flux.just(list).flatMap(operation::save)
+//                    .subscribe(System.out::println);
+        };
+    }
 }
