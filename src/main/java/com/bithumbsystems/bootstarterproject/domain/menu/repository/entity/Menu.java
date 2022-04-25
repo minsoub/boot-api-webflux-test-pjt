@@ -32,6 +32,6 @@ public class Menu {
     String id;
     String title;
     String type;
-    @DBRef(db = "menuitem", lazy = true)
+    //@DBRef(db = "menuitem", lazy = true)
     List<MenuItem> children;
 }

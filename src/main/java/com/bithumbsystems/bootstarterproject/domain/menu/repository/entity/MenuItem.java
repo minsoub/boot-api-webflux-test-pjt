@@ -37,6 +37,6 @@ public class MenuItem {
     String icon;
     boolean target;
     boolean breadcrumbs;
-    @DBRef(db = "menuitem", lazy = true)
+    //@DBRef(db = "menuitem", lazy = true)
     List<MenuItem> children;
 }
