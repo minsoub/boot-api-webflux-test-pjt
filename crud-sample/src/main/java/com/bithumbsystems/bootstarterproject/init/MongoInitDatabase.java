@@ -5,8 +5,14 @@ import com.bithumbsystems.bootstarterproject.domain.coin.repository.CoinReposito
 import com.bithumbsystems.bootstarterproject.domain.menu.repository.MenuRepository;
 import com.bithumbsystems.bootstarterproject.domain.menu.repository.entity.Menu;
 import com.bithumbsystems.bootstarterproject.domain.menu.repository.entity.MenuItem;
-import com.bithumbsystems.bootstarterproject.domain.sample.model.*;
-import com.bithumbsystems.bootstarterproject.domain.sample.repository.*;
+import com.bithumbsystems.bootstarterproject.domain.sample.model.BitCoin;
+import com.bithumbsystems.bootstarterproject.domain.sample.model.Book;
+import com.bithumbsystems.bootstarterproject.domain.sample.model.Image;
+import com.bithumbsystems.bootstarterproject.domain.sample.model.Memo;
+import com.bithumbsystems.bootstarterproject.domain.sample.repository.BitCoinRepository;
+import com.bithumbsystems.bootstarterproject.domain.sample.repository.BookRepository;
+import com.bithumbsystems.bootstarterproject.domain.sample.repository.ImageRepository;
+import com.bithumbsystems.bootstarterproject.domain.sample.repository.MemoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
