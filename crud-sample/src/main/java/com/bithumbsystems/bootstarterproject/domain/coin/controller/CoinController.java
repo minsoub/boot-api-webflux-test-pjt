@@ -1,6 +1,7 @@
-package com.bithumbsystems.bootstarterproject.common.response;
+package com.bithumbsystems.bootstarterproject.domain.coin.controller;
 
 
+import com.bithumbsystems.bootstarterproject.common.response.GeneralResponse;
 import com.bithumbsystems.bootstarterproject.domain.coin.model.dto.CoinReqDto;
 import com.bithumbsystems.bootstarterproject.domain.coin.repository.entity.Coin;
 import com.bithumbsystems.bootstarterproject.domain.coin.service.CoinService;

@@ -1,8 +1,5 @@
 rootProject.name = 'BootStarterProject'
 
 include("crud-sample")
-include("crud-sample:coin")
-include("crud-sample:menu")
-include("crud-sample:sample")
 
 include("functional-router")

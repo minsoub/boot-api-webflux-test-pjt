@@ -1,4 +1,4 @@
-package com.bithumbsystems.bootstarterproject.common.response;
+package com.bithumbsystems.bootstarterproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
