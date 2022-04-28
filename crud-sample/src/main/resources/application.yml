@@ -37,6 +37,16 @@ spring:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
 
+cloud:
+  aws:
+    credentials:
+      profile-name: dev
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    s3:
+      bucket: lrc-dev-bucket
 logging:
   level:
     io:
